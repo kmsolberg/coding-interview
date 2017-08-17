@@ -1,0 +1,23 @@
+{
+  "name": "coding-interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmsolberg/coding-interview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmsolberg/coding-interview/issues"
+  },
+  "homepage": "https://github.com/kmsolberg/coding-interview#readme",
+  "devDependencies": {
+    "jest-cli": "^20.0.4"
+  }
+}
