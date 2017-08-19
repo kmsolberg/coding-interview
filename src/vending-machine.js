@@ -25,7 +25,15 @@ class VendingMachine {
             return {name: coin.name, quantity: coin.quantity + num}
         })
     }
-    // re-supply change
+
+    dispenseItem(items, payment) {
+        const buyThis = items.filter(item => {
+            if ( item.price < payment ) {
+                return item
+            }
+        })
+        return buyThis;
+    }
         // dispense inventory based on payment
         // return change as coins ($0.35 is 1 quarter & 1 dime)
 }

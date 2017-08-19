@@ -121,6 +121,13 @@ describe('resupplyChange', () => {
             {name: 'nickel', quantity: 47 },
         ]
         expect(received).not.toBe(expected)
-        
+    })
+})
+
+describe('dispenseItem', () => {
+    it('should dispense an item whose price is less than payment', () => {
+        received = vendingMachine.dispenseItem(treats, 1)
+        expected = [{name: "chips", quantity: 8, price: 0.65}]
+        expect(received).toEqual(expected)
     })
 })
