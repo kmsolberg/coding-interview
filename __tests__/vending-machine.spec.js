@@ -4,7 +4,7 @@ const vendingMachine = new VendingMachine;
 const treats = [
     {
         name: "snickers",
-        quatity: 3,
+        quantity: 3,
         price: 1.25
     },
     {
@@ -21,20 +21,41 @@ const treats = [
 
 describe('printInventory', () => {
     it('should print the name & quantity of each product', () => {
-        const spy = jest.spyOn(console, 'log')
-        vendingMachine.printInventory(treats)
-        expect(spy).toHaveBeenCalled([{quatity: 3, name: "snickers"}, {names: "chips", quatity: 8}, {name: "oreos", quantity: 1}])
-        // const expected = printInventory(treats)
-        // const received = [ {quatity: 3, name: "snickers"}, {names: "chips", quatity: 8}, {name: "oreos", quantity: 1}]
-        // expect(received).toBe(expected)
+        const expected = vendingMachine.printInventory(treats)
+        const received = [
+            {
+                name: "snickers",
+                quantity: 3,
+            },
+            {
+                name: "chips",
+                quantity: 8,
+            },
+            {
+                name: "oreos",
+                quantity: 1,
+            }
+        ]
+        expect(received).toEqual(expected)
     })
 })
 
-xdescribe('refillInventory', () => {
+describe('refillInventory', () => {
     it('should increase the quantity of a product by X amount', () => {
-        const expected = refillInventory(10)
-        const received = {name: "chips", quantity: 18}
-        expect(received).toBe(expected)
+        const expected = vendingMachine.refillInventory(treats, 10)
+        const received = [{
+            name: "snickers",
+            quantity: 13,
+        },
+        {
+            name: "chips",
+            quantity: 18,
+        },
+        {
+            name: "oreos",
+            quantity: 11,
+        }]
+        expect(received).toEqual(expected)
     })
     it('should not make the quantity of any item larger than 20', () => {
         const expected = refillInventory(10)
