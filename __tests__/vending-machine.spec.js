@@ -19,10 +19,38 @@ const treats = [
     }
 ]
 
+const coins = [
+    {
+        name: 'twoonie',
+        value: 2,
+        quantity: 3
+    },
+    {
+        name: 'loonie',
+        value: 1,
+        quantity: 7
+    },
+    {
+        name: 'quarter',
+        value: 0.25,
+        quantity: 14
+    },
+    {
+        name: 'dime',
+        value: 0.10,
+        quantity: 18
+    },
+    {
+        name: 'nickle',
+        value: 0.05,
+        quantity: 32
+    },
+]
+
 describe('printInventory', () => {
     it('should print the name & quantity of each product', () => {
-        const expected = vendingMachine.printInventory(treats)
-        const received = [
+        const received = vendingMachine.printInventory(treats)
+        const expected = [
             {
                 name: "snickers",
                 quantity: 3,
@@ -42,8 +70,8 @@ describe('printInventory', () => {
 
 describe('refillInventory', () => {
     it('should increase the quantity of a product by X amount', () => {
-        const expected = vendingMachine.refillInventory(treats, 10)
-        const received = [{
+        const received = vendingMachine.refillInventory(treats, 10)
+        const expected = [{
             name: "snickers",
             quantity: 13,
         },
@@ -57,14 +85,42 @@ describe('refillInventory', () => {
         }]
         expect(received).toEqual(expected)
     })
-    it('should not make the quantity of any item larger than 20', () => {
-        const expected = refillInventory(10)
-        const received = [ {snickers: 13}, {chips: 18}, {oreos: 11}]
-        expect(received).toBe(expected)
+    xit('should not make the quantity of any item larger than 20', () => {
+        const received = vendingMachine.refillInventory(treats, 15)
+        const expected = [{
+            name: "snickers",
+            quantity: 13,
+        },
+        {
+            name: "chips",
+            quantity: 18,
+        },
+        {
+            name: "oreos",
+            quantity: 11,
+        }]
     })
 })
-xdescribe('resupplyChange', () => {
-    it('should increase the quantity of a product by X amount', () => {
-        expect(received).toBe(expected)
+
+describe('resupplyChange', () => {
+    it('should increase the quantity of coins by X amount', () => {
+        received = vendingMachine.resupplyChange(coins, 10)
+        expected = [
+            {name: 'twoonie', quantity: 13 },
+        ]
+        expect(received).toEqual(expected)
+    })
+
+    it('should only restock coins with less than 5 in stock', () => {
+        received = vendingMachine.resupplyChange(coins, 15)
+        expected = [
+            {name: 'twoonie', quantity: 18 },
+            {name: 'loonie', quantity: 23 },
+            {name: 'quarter', quantity: 29 },
+            {name: 'dime', quantity: 33 },
+            {name: 'nickel', quantity: 47 },
+        ]
+        expect(received).not.toBe(expected)
+        
     })
 })

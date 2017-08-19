@@ -13,15 +13,19 @@ class VendingMachine {
         var stockedUp = inventory.map((treat) => {
             return {name: treat.name, quantity: treat.quantity + num}
         })
-        // let stockedUp = inventory.reduce(function(acc, obj) {
-        //     acc = {name: acc.name, quantity: acc.quantity}
-        //     return acc
-        // }, [])
         return stockedUp;
     }
-    // arr.reduce((a, b) => ({x: a.x + b.x}))
-        // Refill invnetory
-        // re-supply change
+
+    resupplyChange(coins, num) {
+        function moreCoins(value) {
+            return value.quantity < 5
+        }
+        var newCoins = coins.filter(moreCoins)
+        return newCoins.map((coin) => {
+            return {name: coin.name, quantity: coin.quantity + num}
+        })
+    }
+    // re-supply change
         // dispense inventory based on payment
         // return change as coins ($0.35 is 1 quarter & 1 dime)
 }
