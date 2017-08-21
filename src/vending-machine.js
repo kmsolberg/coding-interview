@@ -13,7 +13,11 @@ class VendingMachine {
 
     refillInventory(inventory, num) {
         var stockedUp = inventory.map((treat) => {
-            return {name: treat.name, quantity: treat.quantity + num}
+            if (treat.quantity + num > 20) {
+                return {name: treat.name, quantity: treat.quantity}
+            } else {
+                return {name: treat.name, quantity: treat.quantity + num}
+            }
         })
         return stockedUp;
     }

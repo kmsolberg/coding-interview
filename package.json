@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --coverage --watch"
+    "test": "jest --verbose --watch"
   },
   "repository": {
     "type": "git",

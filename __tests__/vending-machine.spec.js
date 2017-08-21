@@ -85,19 +85,19 @@ describe('refillInventory', () => {
         }]
         expect(received).toEqual(expected)
     })
-    xit('should not make the quantity of any item larger than 20', () => {
+    it('should not make the quantity of any item larger than 20', () => {
         const received = vendingMachine.refillInventory(treats, 15)
         const expected = [{
             name: "snickers",
-            quantity: 13,
-        },
-        {
-            name: "chips",
             quantity: 18,
         },
         {
+            name: "chips",
+            quantity: 8,
+        },
+        {
             name: "oreos",
-            quantity: 11,
+            quantity: 16,
         }]
         expect(received).toEqual(expected)        
     })
