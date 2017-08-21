@@ -29,12 +29,16 @@ class VendingMachine {
     }
 
     dispenseItem(items, payment) {
-        const buyThis = items.filter(item => {
+        const buyThis = items.find(item => {
             if ( item.price < payment ) {
                 return item
             }
         })
-        return buyThis;
+        if(!buyThis) {
+            return 'Not enough money!'
+        } else {
+            return buyThis
+        }
     }
 
     returnChange(payment) {

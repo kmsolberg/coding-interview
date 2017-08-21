@@ -99,6 +99,7 @@ describe('refillInventory', () => {
             name: "oreos",
             quantity: 11,
         }]
+        expect(received).toEqual(expected)        
     })
 })
 
@@ -127,13 +128,18 @@ describe('resupplyChange', () => {
 describe('dispenseItem', () => {
     it('should dispense an item whose price is less than payment', () => {
         received = vendingMachine.dispenseItem(treats, 1)
-        expected = [{name: "chips", quantity: 8, price: 0.65}]
+        expected = {name: "chips", quantity: 8, price: 0.65}
         expect(received).toEqual(expected)
     })
-    it('should return the difference between the price and cost', () => {
-        received = vendingMachine.dispenseItem(treats, 1)
-        expected = [{name: "chips", quantity: 8, price: 0.65}]
-        expect(received).toEqual(expected)
+    it('should only dispense one item per payment', () => {
+        received = vendingMachine.dispenseItem(treats, 2)
+        expected = {name: "snickers", price: 1.25, quantity: 3}
+        expect(received).toEqual(expected)        
+    })
+    it('should not allow less payment than the cheapest item', () => {
+        received = vendingMachine.dispenseItem(treats, 0.35)
+        expected = 'Not enough money!'
+        expect(received).toBe(expected)
     })
 })
 
