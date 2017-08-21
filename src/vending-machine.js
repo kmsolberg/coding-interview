@@ -1,8 +1,4 @@
 class VendingMachine {
-    
-    constructor() {
-        
-    }
 
     printInventory(inventory) {
         var printed = inventory.map((treat) => {
