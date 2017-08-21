@@ -1,5 +1,7 @@
 class VendingMachine {
+    
     constructor() {
+        
     }
 
     printInventory(inventory) {
@@ -38,15 +40,28 @@ class VendingMachine {
     returnChange(payment) {
         let change = []
         let total = 0
-        let coins = [2, 1, 0.25, 0.10, 0.05]
+        let coins = [
+                        { name: 'twoonie', value: 2, quantity: 3 },
+                        { name: 'loonie', value: 1, quantity: 7 },
+                        { name: 'quarter', value: 0.25, quantity: 14 },
+                        { name: 'dime', value: 0.10, quantity: 18 },
+                        { name: 'nickle', value: 0.05, quantity: 32 },
+                    ]
 
-        coins.forEach(coin => {
-            while(total + coin <= payment) {
-                change.push(coin)
-                total += coin
-            }
-        })
-        return change;
+        if(!payment) {
+            return 'No change for you!'
+        } else {
+            coins.map(coin => {
+                while(total + coin.value <= payment) {
+                    change.push(coin.name)
+                    total += coin.value
+                }
+            })
+            return change.reduce((prev, curr) => {
+                prev[curr] = (prev[curr] || 0) +1;
+                return prev
+            }, {})
+        }
     }
 }
 
