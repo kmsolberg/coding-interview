@@ -130,4 +130,17 @@ describe('dispenseItem', () => {
         expected = [{name: "chips", quantity: 8, price: 0.65}]
         expect(received).toEqual(expected)
     })
+    // it('should return the difference between the price and cost', () => {
+    //     received = vendingMachine.dispenseItem(treats, 1)
+    //     expected = [{name: "chips", quantity: 8, price: 0.65}]
+    //     expect(received).toEqual(expected)
+    // })
+})
+
+describe('returnChange', () => {
+    it('should return an amount in coins', () => {
+        received = vendingMachine.returnChange(1.35)
+        expected = [1, 0.25, 0.10]
+        expect(received).toEqual(expected)
+    })
 })

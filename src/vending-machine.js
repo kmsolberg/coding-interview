@@ -34,8 +34,20 @@ class VendingMachine {
         })
         return buyThis;
     }
-        // dispense inventory based on payment
-        // return change as coins ($0.35 is 1 quarter & 1 dime)
+
+    returnChange(payment) {
+        let change = []
+        let total = 0
+        let coins = [2, 1, 0.25, 0.10, 0.05]
+
+        coins.forEach(coin => {
+            while(total + coin <= payment) {
+                change.push(coin)
+                total += coin
+            }
+        })
+        return change;
+    }
 }
 
 module.exports = {
